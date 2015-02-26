@@ -8,5 +8,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'sinatra'
+  gem 'bcrypt-ruby'
 
 end

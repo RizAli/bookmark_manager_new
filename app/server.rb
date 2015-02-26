@@ -1,6 +1,8 @@
 require 'data_mapper'
 require 'sinatra'
 require './app/models/link.rb'
+require './lib/user.rb'
+require './app/helpers/helper'
 
 env = ENV['RACK_ENV'] || 'development'
 
@@ -11,6 +13,9 @@ require './app/models/link'
 DataMapper.finalize
 
 DataMapper.auto_upgrade!
+
+enable :sessions
+set :session_secret, 'super secret'
 
 
 get '/' do
@@ -33,4 +38,14 @@ get '/tags/:text' do
   erb :index
 end
 
+get '/users/new' do
+  erb :"users/new"
+end
+
+post '/users' do
+  user =User.create(:email => params[:email],
+              :password => params[:password])
+  session[:user_id] = user.id
+  redirect to('/')
+end
 
