@@ -9,5 +9,6 @@ group :test do
   gem 'capybara'
   gem 'sinatra'
   gem 'bcrypt-ruby'
+  gem 'rack-flash3'
 
 end
